@@ -1,5 +1,8 @@
 'use client';
 
+// 동적 렌더링 강제 (빌드 타임 정적 생성 방지)
+export const dynamic = 'force-dynamic';
+
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
