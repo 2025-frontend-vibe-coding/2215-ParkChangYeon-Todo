@@ -32,7 +32,7 @@ export default function ResetPasswordPage() {
 
       // 오류가 있는 경우
       if (error) {
-        const errorMessage = errorDescription 
+        const errorMessage = errorDescription
           ? decodeURIComponent(errorDescription.replace(/\+/g, ' '))
           : '링크가 유효하지 않거나 만료되었습니다.';
         setError(errorMessage);
@@ -50,7 +50,7 @@ export default function ResetPasswordPage() {
           if (sessionError) {
             setError('세션 설정에 실패했습니다. 다시 시도해주세요.');
           }
-          
+
           // 해시 제거 (깔끔한 URL 유지)
           window.history.replaceState(null, '', '/reset-password');
         } catch (err) {
@@ -58,7 +58,9 @@ export default function ResetPasswordPage() {
         }
       } else {
         // 토큰이 없는 경우 - 이미 세션이 있는지 확인
-        const { data: { user } } = await supabase.auth.getUser();
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
         if (!user) {
           setError('유효한 재설정 링크가 필요합니다. 비밀번호 찾기 페이지에서 다시 요청해주세요.');
         }
@@ -237,4 +239,3 @@ export default function ResetPasswordPage() {
     </div>
   );
 }
-
